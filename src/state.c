@@ -23,13 +23,18 @@ static void update_head(game_state_t* state, unsigned int snum);
 
 /* Task 1 */
 game_state_t* create_default_state() {
+  // initialize static variables
   unsigned int num_cols = 20;
   char wall[] = "####################";
   char space[] = "#                  #";
   char snake_fruit[] = "# d>D    *         #";
+  // allocate gamestate attribute pointers and initialize variabels
   game_state_t* state = (game_state_t*)malloc(sizeof(game_state_t));
   state->num_rows = 18;
+  state->num_snakes = 1;
   state->board = (char**)malloc(state->num_rows * sizeof(char*));
+  state->snakes = (snake_t*)malloc(state->num_snakes * sizeof(snake_t));
+  // initialize board
   for (int i = 0; i < state->num_rows; i++) {
     state->board[i] = (char*)malloc(num_cols * sizeof(char));
     if (i == 0 || i == state->num_rows-1) {
@@ -40,6 +45,8 @@ game_state_t* create_default_state() {
       strcpy(state->board[i], space);
     }
   }
+  // initialize snake
+  state->snakes[0] = {2, 2, 2, 4, true}
   return state;
 }
 
