@@ -46,7 +46,8 @@ game_state_t* create_default_state() {
     }
   }
   // initialize snake
-  state->snakes[0] = {2, 2, 2, 4, true}
+  struct snake_t snake = {2, 2, 2, 4, true};
+  state->snakes[0] = snake;
   return state;
 }
 
